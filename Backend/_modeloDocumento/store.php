@@ -28,12 +28,12 @@ $modeloDocumento->descricao  = $_REQUEST["descricao"];
 $recordId = $modeloDocumentoDAO->
 $supplyRequestDAO->StoreRecord($supplyRequest);
     if ($recordId == null) {
-        echo "N�o foi possivel efetuar a opera��o...";
+        echo "Não foi possivel efetuar a operação...";
         exit;
     }
 echo $recordId; // retorna o id do registro inserido para a p�gina de edi��o
 
-// Fecha a conex�o com o banco de dados
+// Fecha a conexão com o banco de dados
 $dataConnector->CloseConnection();
 
 ?>
