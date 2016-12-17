@@ -25,13 +25,12 @@ if ( isset($_REQUEST["id"]) && ($_REQUEST["id"] != 0) ) {
 
 $modeloDocumento->nome       = $_REQUEST["nome"];
 $modeloDocumento->descricao  = $_REQUEST["descricao"];
-$recordId = $modeloDocumentoDAO->
-$supplyRequestDAO->StoreRecord($supplyRequest);
-    if ($recordId == null) {
-        echo "Não foi possivel efetuar a operação...";
-        exit;
-    }
-echo $recordId; // retorna o id do registro inserido para a p�gina de edi��o
+$recordId = $modeloDocumentoDAO->StoreRecord($modeloDocumento);
+if ($recordId == null) {
+    echo "Não foi possivel efetuar a operação...";
+    exit;
+}
+echo $recordId; // retorna o id do registro inserido para a página de edição
 
 // Fecha a conexão com o banco de dados
 $dataConnector->CloseConnection();
