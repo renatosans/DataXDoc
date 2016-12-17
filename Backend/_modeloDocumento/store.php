@@ -23,15 +23,10 @@ if ( isset($_REQUEST["id"]) && ($_REQUEST["id"] != 0) ) {
     $modeloDocumento = $modeloDocumentoDAO->RetrieveRecord($id);
 }
 
-$modeloDocumento->
-
-    $supplyRequest->codigoCartaoEquipamento  = $_REQUEST["equipmentCode"];
-    $supplyRequest->data                     = $_REQUEST["data"];
-    $supplyRequest->hora                     = $_REQUEST["hora"];
-    $supplyRequest->status                   = $_REQUEST["status"];
-    $supplyRequest->observacao               = $_REQUEST["observacao"];
-
-    $recordId = $supplyRequestDAO->StoreRecord($supplyRequest);
+$modeloDocumento->nome       = $_REQUEST["nome"];
+$modeloDocumento->descricao  = $_REQUEST["descricao"];
+$recordId = $modeloDocumentoDAO->
+$supplyRequestDAO->StoreRecord($supplyRequest);
     if ($recordId == null) {
         echo "N�o foi possivel efetuar a opera��o...";
         exit;
