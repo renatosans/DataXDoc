@@ -17,13 +17,13 @@ if ($dataConnector->mysqlConnection == null) {
 $modeloDocumentoDAO = new ModeloDocumentoDAO($dataConnector->mysqlConnection);
 $modeloDocumentoDAO->showErrors = 1;
 
-if( !isset($_POST['reg']) ){
+if( !isset($_POST['id']) ){
     echo "Selecione os registros que deseja excluir";
     exit;
 }
 
-foreach($_POST['reg'] as $key=>$reg){
-    if( !$counterDAO->DeleteRecord($reg) ){
+foreach($_POST['id'] as $key=>$id){
+    if( !$counterDAO->DeleteRecord($id) ){
         echo "Não foi possivel efetuar a operação...";
         exit;
     }
