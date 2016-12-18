@@ -21,7 +21,8 @@ $modeloDocumentoDAO->showErrors = 1;
 $id = 0;
 if( isset($_POST['reg']) ){
     $id = $_POST['reg'];
-    $modeloDocumentoDAO->RetrieveRecord($id);
+    $modeloDocumentoDTO = $modeloDocumentoDAO->RetrieveRecord($id);
+    echo json_encode($modeloDocumentoDTO);
 }
 
 // Fecha a conexão com o banco de dados
