@@ -36,7 +36,25 @@ class ModeloDocumentoDAO{
     }
 
     function RetrieveRecord($id){
-        return null;
+        $dto = null;
+
+        $query = "SELECT * FROM modelodocumento WHERE id = ".$id.";";
+        $recordSet = mysql_query($query, $this->mysqlConnection);
+        if ((!$recordSet) && ($this->showErrors)) {
+            print_r(mysql_error());
+            echo '<br/><br/>';
+        }
+        $recordCount = mysql_num_rows($recordSet);
+        if ($recordCount != 1) return null;
+
+        $record = mysql_fetch_array($recordSet);
+        if (!$record) return null;
+        $dto = new CounterDTO();
+        $dto->id       = $record['id'];
+        $dto->nome     = $record['nome'];
+        mysql_free_result($recordSet);
+
+        return $dto;
     }
 
     function RetrieveRecordArray($filter = null){
