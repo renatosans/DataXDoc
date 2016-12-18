@@ -23,9 +23,9 @@ if ( isset($_REQUEST["id"]) && ($_REQUEST["id"] != 0) ) {
     $id = $_REQUEST["id"];
     $modeloDocumento = $modeloDocumentoDAO->RetrieveRecord($id);
 }
-
 $modeloDocumento->nome       = $_REQUEST["nome"];
 $modeloDocumento->descricao  = $_REQUEST["descricao"];
+
 $recordId = $modeloDocumentoDAO->StoreRecord($modeloDocumento);
 if ($recordId == null) {
     echo "Não foi possivel efetuar a operação...";

@@ -49,9 +49,10 @@ class ModeloDocumentoDAO{
 
         $record = mysql_fetch_array($recordSet);
         if (!$record) return null;
-        $dto = new CounterDTO();
-        $dto->id       = $record['id'];
-        $dto->nome     = $record['nome'];
+        $dto = new ModeloDocumentoDTO();
+        $dto->id        = $record['id'];
+        $dto->nome      = $record['nome'];
+        $dto->descricao = $record['descricao'];
         mysql_free_result($recordSet);
 
         return $dto;
