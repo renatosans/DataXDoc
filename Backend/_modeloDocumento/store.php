@@ -1,5 +1,6 @@
 <?php
 
+include_once("../defines.php");
 include_once("../DataConnector.php");
 include_once("../DataAccessObjects/ModeloDocumentoDAO.php");
 include_once("../DataTransferObjects/ModeloDocumentoDTO.php");
