@@ -23,7 +23,7 @@ if( !isset($_POST['id']) ){
 }
 
 foreach($_POST['id'] as $key=>$id){
-    if( !$counterDAO->DeleteRecord($id) ){
+    if( !$modeloDocumentoDAO->DeleteRecord($id) ){
         echo "Não foi possivel efetuar a operação...";
         exit;
     }
