@@ -24,6 +24,9 @@ if( isset($_POST['reg']) ){
     $modeloDocumentoDTO = $modeloDocumentoDAO->RetrieveRecord($id);
     echo json_encode($modeloDocumentoDTO);
 }
+if ($id == 0){ // nenhum registro especificado, retorna todos
+    $modeloDocumentoDAO->RetrieveRecordArray(null);
+}
 
 // Fecha a conexão com o banco de dados
 $dataConnector->CloseConnection();
