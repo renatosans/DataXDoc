@@ -66,7 +66,7 @@ class ModeloDocumentoDAO{
     }
 
     function RetrieveRecordArray($filter = null){
-        return null;
+        // retorna a lista de registros
     }
 
 }
