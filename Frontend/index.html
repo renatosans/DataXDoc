@@ -8,6 +8,24 @@
 </head>
 
 <body>
+<form name="testeBackend" action="../Backend/_modemloDocumento/store.php" method="POST" >
+    <fieldset>
+    <legend>Store DocumentModel</legend>
+        <label>
+			<span>Nome:</span>
+			<input type="text" name="nome" />
+		</label>
+		<label>
+			<span>Descrição:</span>
+			<input type="text" name="descricao"/>
+		</label>
+        <div style="clear:both;">
+            <br/><br/>
+        </div>
+
+        <button type="submit" name="enviar" >Enviar</button>
+    </fieldset>
+</form>
 </body>
 
 </html>
