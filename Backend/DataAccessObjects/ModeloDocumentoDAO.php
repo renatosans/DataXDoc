@@ -32,7 +32,14 @@ class ModeloDocumentoDAO{
     }
 
     function DeleteRecord($id){
-        return null;
+        $query = "DELETE FROM modelodocumento WHERE id = ".$id;
+        $result = mysql_query($query, $this->mysqlConnection);
+
+        if ((!$result) && ($this->showErrors)) {
+            print_r(mysql_error());
+            echo '<br/>';
+        }
+        return $result;
     }
 
     function RetrieveRecord($id){
