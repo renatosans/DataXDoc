@@ -19,8 +19,8 @@ $modeloDocumentoDAO->showErrors = 1;
 
 $id = 0;
 $modeloDocumento = new ModeloDocumentoDTO();
-if ( isset($_REQUEST["id"]) && ($_REQUEST["id"] != 0) ) {
-    $id = $_REQUEST["id"];
+if ( isset($_REQUEST["reg"]) && ($_REQUEST["reg"] != 0) ) {
+    $id = $_REQUEST["reg"];
     $modeloDocumento = $modeloDocumentoDAO->RetrieveRecord($id);
 }
 $modeloDocumento->nome       = $_REQUEST["nome"];
