@@ -18,6 +18,11 @@ $modeloDocumentoDAO = new ModeloDocumentoDAO($dataConnector->mysqlConnection);
 $modeloDocumentoDAO->showErrors = 1;
 
 /* recupera a lista de registros em formato JSON */
+$id = 0;
+if( isset($_POST['reg']) ){
+    $id = $_POST['reg'];
+    $modeloDocumentoDAO->RetrieveRecord($id);
+}
 
 // Fecha a conexão com o banco de dados
 $dataConnector->CloseConnection();
