@@ -8,7 +8,7 @@
 </head>
 
 <body>
-<form name="testeBackend" action="../Backend/_modeloDocumento/store.php" method="POST" >
+<form name="testeBackend1" action="../Backend/_modeloDocumento/store.php" method="POST" >
     <fieldset>
     <legend>Store DocumentModel</legend>
         <!-- <input type="hidden" name="id" value="4" /> -->
@@ -24,7 +24,22 @@
             <br/><br/>
         </div>
 
-        <button type="submit" name="enviar" >Enviar</button>
+        <button type="submit" name="enviar1" >Enviar</button>
+    </fieldset>
+</form>
+
+<form name="testeBackend2" action="../Backend/_modeloDocumento/delete.php" method="POST" >
+    <fieldset>
+    <legend>Delete DocumentModel</legend>
+        <label>
+			<span>ID:</span>
+			<input type="text" name="id" />
+		</label>
+        <div style="clear:both;">
+            <br/><br/>
+        </div>
+
+        <button type="submit" name="enviar2" >Enviar</button>
     </fieldset>
 </form>
 </body>
