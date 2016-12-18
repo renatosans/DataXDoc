@@ -8,9 +8,10 @@
 </head>
 
 <body>
-<form name="testeBackend" action="../Backend/restApi.php?function=store" method="POST" >
+<form name="testeBackend" action="../Backend/_modeloDocumento/store.php" method="POST" >
     <fieldset>
     <legend>Store DocumentModel</legend>
+        <input type="hidden" name="id" value="4" />
         <label>
 			<span>Nome:</span>
 			<input type="text" name="nome" />
