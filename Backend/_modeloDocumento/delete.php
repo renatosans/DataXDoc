@@ -17,7 +17,7 @@ if ($dataConnector->mysqlConnection == null) {
 $modeloDocumentoDAO = new ModeloDocumentoDAO($dataConnector->mysqlConnection);
 $modeloDocumentoDAO->showErrors = 1;
 
-if( !isset($_POST['reg[]']) ){
+if( !isset($_POST['reg']) ){
     echo "Selecione os registros que deseja excluir";
     exit;
 }
