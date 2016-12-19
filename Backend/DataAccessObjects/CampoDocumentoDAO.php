@@ -13,9 +13,9 @@ class CampoDocumentoDAO{
 
     function StoreRecord($dto){
         // Monta a query dependendo do id como INSERT ou UPDATE
-        $query = "INSERT INTO campoDocumento VALUES (NULL, '".$dto->modeloDocumento."', '".$dto->nome."', '".$dto->tipo."');";
+        $query = "INSERT INTO campoDocumento VALUES (NULL, ".$dto->modeloDocumento.", '".$dto->nome."', ".$dto->tipo.");";
         if ($dto->id > 0)
-            $query = "UPDATE campoDocumento SET modeloDocumento = '".$dto->modeloDocumento."', nome = ".$dto->nome.", tipo = '".$dto->tipo."' WHERE id = ".$dto->id;
+            $query = "UPDATE campoDocumento SET modeloDocumento = ".$dto->modeloDocumento.", nome = '".$dto->nome."', tipo = ".$dto->tipo." WHERE id = ".$dto->id;
 
         $result = mysql_query($query, $this->mysqlConnection);
         if ($result) {
