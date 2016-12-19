@@ -19,7 +19,7 @@ $modeloDocumentoDAO->showErrors = 1;
 
 /* recupera a lista de registros em formato JSON */
 $id = 0;
-if( isset($_POST['reg']) ){
+if ( isset($_POST["reg"]) && ($_POST["reg"] != 0) ) {
     $id = $_POST['reg'];
     $modeloDocumentoDTO = $modeloDocumentoDAO->RetrieveRecord($id);
     echo json_encode($modeloDocumentoDTO);
