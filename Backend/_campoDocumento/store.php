@@ -17,10 +17,15 @@ if ($dataConnector->mysqlConnection == null) {
 $campoDocumentoDAO = new CampoDocumentoDAO($dataConnector->mysqlConnection);
 $campoDocumentoDAO->showErrors = 1;
 
+$id = 0;
 $campoDocumento = new CampoDocumentoDTO();
-$campoDocumento->modeloDocumento = 8;
-$campoDocumento->nome = 'Nome do Paciente';
-$campoDocumento->tipo = 2;
+if ( isset($_REQUEST["reg"]) && ($_REQUEST["reg"] != 0) ) {
+    $id = $_REQUEST["reg"];
+    $campoDocumento = $campoDocumentoDAO->RetrieveRecord($id);
+}
+$campoDocumento->$modeloDocumento  = $_REQUEST["modeloDocumento"];
+$campoDocumento->nome              = $_REQUEST["nome"];
+$campoDocumento->tipo              = $_REQUEST["tipo"];
 
 $recordId = $campoDocumentoDAO->StoreRecord($campoDocumento);
 if ($recordId == null) {
