@@ -13,9 +13,9 @@ class CampoDocumentoDAO{
 
     function StoreRecord($dto){
         // Monta a query dependendo do id como INSERT ou UPDATE
-        $query = "INSERT INTO campoDocumento VALUES (NULL, ".$dto->modeloDocumento.", '".$dto->nome."', ".$dto->tipo.");";
+        $query = "INSERT INTO campodocumento VALUES (NULL, ".$dto->modeloDocumento.", '".$dto->nome."', ".$dto->tipo.");";
         if ($dto->id > 0)
-            $query = "UPDATE campoDocumento SET modeloDocumento = ".$dto->modeloDocumento.", nome = '".$dto->nome."', tipo = ".$dto->tipo." WHERE id = ".$dto->id;
+            $query = "UPDATE campodocumento SET modeloDocumento = ".$dto->modeloDocumento.", nome = '".$dto->nome."', tipo = ".$dto->tipo." WHERE id = ".$dto->id;
 
         $result = mysql_query($query, $this->mysqlConnection);
         if ($result) {
@@ -32,20 +32,20 @@ class CampoDocumentoDAO{
     }
 
     function DeleteRecord($id){
-        $query = "DELETE FROM campoDocumento WHERE id = ".$id.";";
+        $query = "DELETE FROM campodocumento WHERE id = ".$id.";";
         $result = mysql_query($query, $this->mysqlConnection);
 
         if ((!$result) && ($this->showErrors)) {
             print_r(mysql_error());
             echo '<br/>';
         }
-        return null;
+        return $result;
     }
 
     function RetrieveRecord($id){
         $dto = null;
 
-        $query = "SELECT * FROM campoDocumento WHERE id = ".$id.";";
+        $query = "SELECT * FROM campodocumento WHERE id = ".$id.";";
         $recordSet = mysql_query($query, $this->mysqlConnection);
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysql_error());
@@ -69,8 +69,8 @@ class CampoDocumentoDAO{
     function RetrieveRecordArray($filter = null){
         $dtoArray = array();
 
-        $query = "SELECT * FROM campoDocumento WHERE ".$filter.";";
-        if (empty($filter)) $query = "SELECT * FROM campoDocumento;";
+        $query = "SELECT * FROM campodocumento WHERE ".$filter.";";
+        if (empty($filter)) $query = "SELECT * FROM campodocumento;";
 
         $recordSet = mysql_query($query, $this->mysqlConnection);
         if ((!$recordSet) && ($this->showErrors)) {
@@ -95,6 +95,7 @@ class CampoDocumentoDAO{
 
         return $dtoArray;
     }
+
 }
 
 ?>
