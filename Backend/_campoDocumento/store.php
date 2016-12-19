@@ -23,7 +23,7 @@ if ( isset($_REQUEST["reg"]) && ($_REQUEST["reg"] != 0) ) {
     $id = $_REQUEST["reg"];
     $campoDocumento = $campoDocumentoDAO->RetrieveRecord($id);
 }
-$campoDocumento->$modeloDocumento  = $_REQUEST["modeloDocumento"];
+$campoDocumento->modeloDocumento  = $_REQUEST["modeloDocumento"];
 $campoDocumento->nome              = $_REQUEST["nome"];
 $campoDocumento->tipo              = $_REQUEST["tipo"];
 

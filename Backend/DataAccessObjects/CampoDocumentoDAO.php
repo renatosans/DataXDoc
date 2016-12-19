@@ -32,6 +32,13 @@ class CampoDocumentoDAO{
     }
 
     function DeleteRecord($id){
+        $query = "DELETE FROM campoDocumento WHERE id = ".$id.";";
+        $result = mysql_query($query, $this->mysqlConnection);
+
+        if ((!$result) && ($this->showErrors)) {
+            print_r(mysql_error());
+            echo '<br/>';
+        }
         return null;
     }
 
