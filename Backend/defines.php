@@ -7,7 +7,7 @@
         "both"
     );
 
-    // Parâmetros de login no banco de dados
+    // ParÃ¢metros de login no banco de dados
     $mysqlAuthentication = Array(
         "host"=>"localhost",
         "username"=>"root",
@@ -15,7 +15,7 @@
         "database"=>"dataxdoc"
     );
 
-    // Parâmetros de login no banco de dados
+    // ParÃ¢metros de login no banco de dados
     $sqlserverAuthentication = Array(
         "host"=>"localhost",
         "username"=>"sapBusinessOne",
