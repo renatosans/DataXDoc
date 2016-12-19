@@ -66,7 +66,32 @@ class ModeloDocumentoDAO{
     }
 
     function RetrieveRecordArray($filter = null){
-        // retorna a lista de registros
+        $dtoArray = array();
+
+        $query = "SELECT * FROM modelodocumento WHERE ".$filter.";";
+        if (empty($filter)) $query = "SELECT * FROM modelodocumento;";
+
+        $recordSet = mysql_query($query, $this->mysqlConnection);
+        if ((!$recordSet) && ($this->showErrors)) {
+            print_r(mysql_error());
+            echo '<br/><br/>';
+        }
+        $recordCount = mysql_num_rows($recordSet);
+        if ($recordCount == 0) return $dtoArray;
+
+        $index = 0;
+        while( $record = mysql_fetch_array($recordSet) ){
+            $dto = new ModeloDocumentoDTO();
+            $dto->id         = $record['id'];
+            $dto->nome       = $record['nome'];
+            $dto->descricao  = $record['descricao'];
+
+            $dtoArray[$index] = $dto;
+            $index++;
+        }
+        mysql_free_result($recordSet);
+
+        return $dtoArray;
     }
 
 }
