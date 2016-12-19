@@ -67,7 +67,33 @@ class CampoDocumentoDAO{
     }
 
     function RetrieveRecordArray($filter = null){
-        return null;
+        $dtoArray = array();
+
+        $query = "SELECT * FROM campoDocumento WHERE ".$filter.";";
+        if (empty($filter)) $query = "SELECT * FROM campoDocumento;";
+
+        $recordSet = mysql_query($query, $this->mysqlConnection);
+        if ((!$recordSet) && ($this->showErrors)) {
+            print_r(mysql_error());
+            echo '<br/><br/>';
+        }
+        $recordCount = mysql_num_rows($recordSet);
+        if ($recordCount == 0) return $dtoArray;
+
+        $index = 0;
+        while( $record = mysql_fetch_array($recordSet) ){
+            $dto = new CampoDocumentoDTO();
+            $dto->id              = $record['id'];
+            $dto->modeloDocumento = $record['modeloDocumento'];
+            $dto->nome            = $record['nome'];
+            $dto->tipo            = $record['tipo'];
+
+            $dtoArray[$index] = $dto;
+            $index++;
+        }
+        mysql_free_result($recordSet);
+
+        return $dtoArray;
     }
 }
 
