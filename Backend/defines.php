@@ -23,4 +23,7 @@
         "database"=>"SBO_DATACOPY"
     );
 
+    // Caminho para o diretório temporário
+    $tempDir = "Backend/_tempDir";
+
 ?>
