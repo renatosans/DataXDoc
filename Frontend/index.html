@@ -9,16 +9,20 @@
     <script type="text/javascript" src="javascript/jquery-3.1.1.min.js" ></script>
     <script type="text/javascript" >
         $(document).ready(function() {
-            function ParseResponse(response){
+            function ParseResponse(response, output){
                 var lista = JSON.parse(response);
-                for(var campoDocumento in lista) {
-                    $("#campos").append(lista[campoDocumento].nome + '\n');
+                for(var item in lista) {
+                    $(output).append(lista[item].nome + '\n');
                 }
             }
 
+            var targetUrl = "../Backend/_modeloDocumento/retrieve.php";
+            var callParameters = {'reg':''}; // Parâmetro vazio, retorna todos os registros
+            $.ajax({ type: 'POST', url: targetUrl, data: callParameters, success: function(response) { ParseResponse(response, "#modelos"); }, async: false });
+
             var targetUrl = "../Backend/_campoDocumento/retrieve.php";
             var callParameters = {'reg':''}; // Parâmetro vazio, retorna todos os registros
-            $.ajax({ type: 'POST', url: targetUrl, data: callParameters, success: function(response) { ParseResponse(response); }, async: false });
+            $.ajax({ type: 'POST', url: targetUrl, data: callParameters, success: function(response) { ParseResponse(response, "#campos"); }, async: false });
         });
     </script>
 </head>
@@ -81,6 +85,7 @@
     </fieldset>
 </form>
 
+<textarea id="modelos"></textarea>
 <textarea id="campos"></textarea>
 
 </body>
