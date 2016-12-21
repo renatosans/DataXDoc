@@ -11,7 +11,9 @@
         $(document).ready(function() {
             function ParseResponse(response){
                 var lista = JSON.parse(response);
-                alert(lista);
+                for(var campoDocumento in lista) {
+                    $("#campos").append(lista[campoDocumento].nome + '\n');
+                }
             }
 
             var targetUrl = "../Backend/_campoDocumento/retrieve.php";
@@ -78,6 +80,9 @@
         <button type="submit" name="enviar3" >Retrieve</button>
     </fieldset>
 </form>
+
+<textarea id="campos"></textarea>
+
 </body>
 
 </html>
