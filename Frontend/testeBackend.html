@@ -5,6 +5,25 @@
     <meta http-equiv="Content-Language" content="pt-br" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" >
     <title>DataXDoc</title>
+
+    <link href="CSS/tema.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="javascript/jquery-3.1.1.min.js" ></script>
+
+    <script type="text/javascript" >
+        $(document).ready(function() {
+            function ParseResponse(response, output){
+                var lista = JSON.parse(response);
+                for(var item in lista) {
+                    $(output).append(lista[item].nome + '\n');
+                }
+            }
+
+            var targetUrl = "../Backend/_modeloDocumento/retrieve.php";
+            var callParameters = {'reg':''}; // Parâmetro vazio, retorna todos os registros
+            $.ajax({ type: 'POST', url: targetUrl, data: callParameters, success: function(response) { ParseResponse(response, "#modelosDocumento"); }, async: false });
+        });
+    </script>
+
 </head>
 
 <body>
@@ -64,6 +83,8 @@
         <button type="submit" name="enviar3" >Retrieve</button>
     </fieldset>
 </form>
+
+<textarea id="modelosDocumento"></textarea>
 
 </body>
 
