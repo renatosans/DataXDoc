@@ -1,0 +1,6 @@
+textarea {
+	background-color: lightyellow;
+	resize:both;
+	min-width: 300px;
+	min-height: 150px;
+}
