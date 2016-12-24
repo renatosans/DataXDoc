@@ -1,6 +1,13 @@
 textarea {
 	background-color: lightyellow;
 	resize:both;
-	min-width: 300px;
-	min-height: 150px;
+	min-width: 250px;
+	min-height: 100px;
+}
+fieldset {
+	background-color: lightblue;
+}
+legend{
+    color: #0073EA;
+    font-size: 20px;
 }
