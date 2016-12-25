@@ -1,95 +1,25 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta http-equiv="Content-Language" content="pt-br" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+    <meta charset="UTF-8">
     <title>DataXDoc</title>
 
     <link href="CSS/tema.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="javascript/jquery-3.1.1.min.js" ></script>
-
-    <script type="text/javascript" >
-        $(document).ready(function() {
-            function ParseResponse(response, output){
-                var lista = JSON.parse(response);
-                for(var item in lista) {
-                    $(output).append(lista[item].nome + '\n');
-                }
-            }
-
-            var targetUrl = "../Backend/_modeloDocumento/retrieve.php";
-            var callParameters = {'reg':''}; // Parâmetro vazio, retorna todos os registros
-            $.ajax({ type: 'POST', url: targetUrl, data: callParameters, success: function(response) { ParseResponse(response, "#modelos"); }, async: false });
-
-            var targetUrl = "../Backend/_campoDocumento/retrieve.php";
-            var callParameters = {'reg':''}; // Parâmetro vazio, retorna todos os registros
-            $.ajax({ type: 'POST', url: targetUrl, data: callParameters, success: function(response) { ParseResponse(response, "#campos"); }, async: false });
-        });
-    </script>
 </head>
-
-<body>
-<form name="testeBackend1" action="../Backend/_documento/store.php" method="POST" >
-    <fieldset>
-    <legend>Store</legend>
-        <label>
-            <span>ID Registro:</span>
-            <input type="text" name="reg" />
-        </label>
-        <label>
-            <span>Modelo do documento:</span>
-            <input type="text" name="modeloDocumento" />
-        </label>
-        <label>
-            <span>Nome do campo:</span>
-            <input type="text" name="nome" />
-        </label>
-        <label>
-            <span>Tipo do campo:</span>
-            <input type="text" name="tipo"/>
-        </label>
-        <div style="clear:both;">
-            <br/><br/>
-        </div>
-
-        <button type="submit" name="enviar1" >Store</button>
-    </fieldset>
-</form>
-
-<form name="testeBackend2" action="../Backend/_documento/delete.php" method="POST" >
-    <fieldset>
-    <legend>Delete</legend>
-        <label>
-            <span>ID Registro:</span>
-            <input type="text" name="reg[]" />
-        </label>
-        <div style="clear:both;">
-            <br/><br/>
-        </div>
-
-        <button type="submit" name="enviar2" >Delete</button>
-    </fieldset>
-</form>
-
-<form name="testeBackend3" action="../Backend/_documento/retrieve.php" method="POST" >
-    <fieldset>
-    <legend>Retrieve</legend>
-        <label>
-            <span>ID Registro:</span>
-            <input type="text" name="reg" /> Insira o identificador do registro ( deixe em branco para recuperar todos )
-        </label>
-        <div style="clear:both;">
-            <br/><br/>
-        </div>
-
-        <button type="submit" name="enviar3" >Retrieve</button>
-    </fieldset>
-</form>
-
-<textarea id="modelos"></textarea>
-<textarea id="campos"></textarea>
-
+<body> 
+    <div id="container">
+        <a href="">Documentos</a>
+        <a href="">Usuários</a>
+        <a href="">Pesquisar</a>
+    </div>
+    <script>
+     document.body.onload = function(){
+        var header = document.createElement('h1');
+        header.innerText = "DataXDoc";
+        var container = document.getElementById("container");
+        container.appendChild(header);
+     }
+    </script>
 </body>
-
 </html>
