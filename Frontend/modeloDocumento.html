@@ -18,12 +18,22 @@
 
                 var lista = JSON.parse(response);
                 for(var item in lista) {
-                    var span = document.createElement('span');
-                    span.innerText = lista[item].nome;
-                    container.appendChild(span);
-                    var lineBreak = document.createElement('br');
-                    container.appendChild(lineBreak);
+                    DisplayItem(lista[item]);
                 }
+            }
+
+            function DisplayItem(modeloDocumento){
+                var span = document.createElement('span');
+                span.innerText = modeloDocumento.nome;
+                container.appendChild(span);
+                var editButton = document.createElement('img');
+                editButton.src = 'images/edit.png';
+                container.appendChild(editButton);
+                var deleteButton = document.createElement('img');
+                deleteButton.src = 'images/dump.png';
+                container.appendChild(deleteButton);
+                var lineBreak = document.createElement('br');
+                container.appendChild(lineBreak);
             }
 
             var targetUrl = "../Backend/_modeloDocumento/retrieve.php";
