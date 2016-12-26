@@ -11,3 +11,9 @@ legend{
     color: #0073EA;
     font-size: 20px;
 }
+ul {
+  list-style-type: none;
+}
+li {
+    display: inline;
+}
