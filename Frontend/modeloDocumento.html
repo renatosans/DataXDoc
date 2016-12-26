@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Modelos de Documento</title>
+
+    <link href="CSS/tema.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="javascript/jquery-3.1.1.min.js" ></script>
+</head>
+<body>
+    <div id="container">
+    </div>
+
+    <script type="text/javascript" >
+        $(document).ready(function() {
+            function ParseResponse(response){
+                var container = document.getElementById("container");
+
+                var lista = JSON.parse(response);
+                for(var item in lista) {
+                    var span = document.createElement('span');
+                    span.innerText = lista[item].nome;
+                    container.appendChild(span);
+                    var lineBreak = document.createElement('br');
+                    container.appendChild(lineBreak);
+                }
+            }
+
+            var targetUrl = "../Backend/_modeloDocumento/retrieve.php";
+            var callParameters = {'reg':''}; // Parâmetro vazio, retorna todos os registros
+            $.ajax({ type: 'POST', url: targetUrl, data: callParameters, success: function(response) { ParseResponse(response); }, async: false });
+        });
+    </script>
+</body>
+</html>
