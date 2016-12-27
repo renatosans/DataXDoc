@@ -5,7 +5,9 @@
     <title>Modelos de Documento</title>
 
     <link href="CSS/tema.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="javascript/jquery-3.1.1.min.js" ></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script>
         function AddNew(){
             alert('Adicionar novo modelo');
@@ -14,7 +16,7 @@
 </head>
 <body>
     <div id="menu">
-        <a onclick="AddNew();" >Novo Modelo</a>
+        <button type="button" class="btn btn-primary" onclick="AddNew();" >Novo Modelo</button>
     </div>
     <br/>
     <div id="container">
