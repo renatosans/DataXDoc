@@ -9,7 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script>
-        function AddNew(){
+        function AbrirDialogo(){
             // Busca a view para este dialogo
             var targetUrl = '../Frontend/views/novoModelo.html';
             $.ajax({ url: targetUrl, context: this, async: false, success: function(response) {
@@ -27,6 +27,11 @@
             var callParameters = {'nome': $('input[name=nome]').val(), 'descricao': $('input[name=descricao]').val()};
             $.ajax({ type: 'POST', url: targetUrl, data: callParameters, success: function(response) { id = response; }, async: false });
         }
+        function ListarItems(){
+            var targetUrl = "../Backend/_modeloDocumento/retrieve.php";
+            var callParameters = {'reg':''}; // Parâmetro vazio, retorna todos os registros
+            $.ajax({ type: 'POST', url: targetUrl, data: callParameters, success: function(response) { ParseResponse(response); }, async: false });
+        }
         function FecharDialogo(){
             $('#novoModelo').modal('hide');
         }
@@ -34,7 +39,7 @@
 </head>
 <body>
     <div id="menu">
-        <button type="button" class="btn btn-primary" onclick="AddNew();" >Novo Modelo</button>
+        <button type="button" class="btn btn-primary" onclick="AbrirDialogo();" >Novo Modelo</button>
     </div>
     <br/>
     <div id="container">
@@ -67,9 +72,6 @@
                 lista.appendChild(lineBreak);
             }
 
-            var targetUrl = "../Backend/_modeloDocumento/retrieve.php";
-            var callParameters = {'reg':''}; // Parâmetro vazio, retorna todos os registros
-            $.ajax({ type: 'POST', url: targetUrl, data: callParameters, success: function(response) { ParseResponse(response); }, async: false });
         });
     </script>
 </body>
