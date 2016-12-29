@@ -19,7 +19,10 @@
             $('#novoModelo').modal('show');
         }
         function InserirNovo(){
-            alert('Inserindo novo registro...');
+            var id = 0;
+            var targetUrl = "../Backend/_modeloDocumento/store.php";
+            var callParameters = {'nome': $('input[name=nome]').val(), 'descricao': $('input[name=descricao]').val()};
+            $.ajax({ type: 'POST', url: targetUrl, data: callParameters, success: function(response) { id = response; }, async: false });
         }
         function FecharDialogo(){
             $('#novoModelo').modal('hide');
