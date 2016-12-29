@@ -39,30 +39,32 @@
     <br/>
     <div id="container">
     </div>
+    <div id="lista">
+    </div>
 
     <script type="text/javascript" >
         $(document).ready(function() {
             function ParseResponse(response){
-                var container = document.getElementById("container");
+                var lista = document.getElementById("lista");
 
-                var lista = JSON.parse(response);
-                for(var item in lista) {
-                    DisplayItem(lista[item]);
+                var itemList = JSON.parse(response);
+                for(var item in itemList) {
+                    DisplayItem(itemList[item]);
                 }
             }
 
             function DisplayItem(modeloDocumento){
                 var span = document.createElement('span');
                 span.innerText = modeloDocumento.nome;
-                container.appendChild(span);
+                lista.appendChild(span);
                 var editButton = document.createElement('img');
                 editButton.src = 'images/edit.png';
-                container.appendChild(editButton);
+                lista.appendChild(editButton);
                 var deleteButton = document.createElement('img');
                 deleteButton.src = 'images/dump.png';
-                container.appendChild(deleteButton);
+                lista.appendChild(deleteButton);
                 var lineBreak = document.createElement('br');
-                container.appendChild(lineBreak);
+                lista.appendChild(lineBreak);
             }
 
             var targetUrl = "../Backend/_modeloDocumento/retrieve.php";
