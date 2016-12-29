@@ -10,7 +10,13 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script>
         function AddNew(){
-            alert('Adicionar novo modelo');
+            // Busca a view para este dialogo
+            var targetUrl = '../Frontend/views/novoModelo.html';
+            $.get(targetUrl, function(response){
+                var container = document.getElementById("container");
+                container.innerHTML = response;
+            });
+            $('#novoModelo').modal('show');
         }
     </script>
 </head>
