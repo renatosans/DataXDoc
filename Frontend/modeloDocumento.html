@@ -12,10 +12,11 @@
         function AddNew(){
             // Busca a view para este dialogo
             var targetUrl = '../Frontend/views/novoModelo.html';
-            $.get(targetUrl, function(response){
-                var container = document.getElementById("container");
-                if ( $( "#novoModelo" ).length == 0) {  // Verifica se o dialogo já existe na página
-                    container.innerHTML = response;
+            $.ajax({ url: targetUrl, context: this, async: false, success: function(response) {
+                    var container = document.getElementById("container");
+                    if ( $( "#novoModelo" ).length == 0) {  // Verifica se o dialogo já existe na página, evita duplicações
+                        container.innerHTML = response;
+                    }
                 }
             });
             $('#novoModelo').modal('show');
