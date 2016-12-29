@@ -14,7 +14,9 @@
             var targetUrl = '../Frontend/views/novoModelo.html';
             $.get(targetUrl, function(response){
                 var container = document.getElementById("container");
-                container.innerHTML = response;
+                if ( $( "#novoModelo" ).length == 0) {  // Verifica se o dialogo já existe na página
+                    container.innerHTML = response;
+                }
             });
             $('#novoModelo').modal('show');
         }
