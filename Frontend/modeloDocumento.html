@@ -20,6 +20,11 @@
             var callParameters = {'reg':''}; // Parâmetro vazio, retorna todos os registros
             $.ajax({ type: 'POST', url: targetUrl, data: callParameters, success: function(response) { ParseResponse(response); }, async: false });
         }
+        function ExcluirItem(id){
+            var targetUrl = "../Backend/_modeloDocumento/delete.php";
+            var callParameters = {'reg[]':id};  // TODO: Exclusão multipla, selecionando vários items
+            $.ajax({ type: 'POST', url: targetUrl, data: callParameters, success: function(response) { alert(response); }, async: false });
+        }
         function ParseResponse(response){
             var lista = document.getElementById("lista");
             lista.innerHTML = ""; // Limpa a lista antes de recarregar
@@ -38,6 +43,7 @@
             lista.appendChild(editButton);
             var deleteButton = document.createElement('img');
             deleteButton.src = 'images/dump.png';
+            deleteButton.onclick = function() { ExcluirItem(modeloDocumento.id); ListarItems(); };
             lista.appendChild(deleteButton);
             var lineBreak = document.createElement('br');
             lista.appendChild(lineBreak);
