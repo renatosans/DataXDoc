@@ -9,7 +9,46 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script>
-        function AddNew(){
+        function InserirNovo(){
+            var id = 0;
+            var targetUrl = "../Backend/_modeloDocumento/store.php";
+            var callParameters = {'nome': $('input[name=nome]').val(), 'descricao': $('input[name=descricao]').val()};
+            $.ajax({ type: 'POST', url: targetUrl, data: callParameters, success: function(response) { id = response; }, async: false });
+        }
+        function ListarItems(){
+            var targetUrl = "../Backend/_modeloDocumento/retrieve.php";
+            var callParameters = {'reg':''}; // Parâmetro vazio, retorna todos os registros
+            $.ajax({ type: 'POST', url: targetUrl, data: callParameters, success: function(response) { ParseResponse(response); }, async: false });
+        }
+        function ExcluirItem(id){
+            var targetUrl = "../Backend/_modeloDocumento/delete.php";
+            var callParameters = {'reg[]':id};  // TODO: Exclusão multipla, selecionando vários items
+            $.ajax({ type: 'POST', url: targetUrl, data: callParameters, success: function(response) { alert(response); }, async: false });
+        }
+        function ParseResponse(response){
+            var lista = document.getElementById("lista");
+            lista.innerHTML = ""; // Limpa a lista antes de recarregar
+
+            var itemList = JSON.parse(response);
+            for(var item in itemList) {
+                DisplayItem(itemList[item]);
+            }
+        }
+        function DisplayItem(modeloDocumento){
+            var span = document.createElement('span');
+            span.innerText = modeloDocumento.nome;
+            lista.appendChild(span);
+            var editButton = document.createElement('img');
+            editButton.src = 'images/edit.png';
+            lista.appendChild(editButton);
+            var deleteButton = document.createElement('img');
+            deleteButton.src = 'images/dump.png';
+            deleteButton.onclick = function() { ExcluirItem(modeloDocumento.id); ListarItems(); };
+            lista.appendChild(deleteButton);
+            var lineBreak = document.createElement('br');
+            lista.appendChild(lineBreak);
+        }
+        function AbrirDialogo(){
             // Busca a view para este dialogo
             var targetUrl = '../Frontend/views/novoModelo.html';
             $.ajax({ url: targetUrl, context: this, async: false, success: function(response) {
@@ -21,55 +60,24 @@
             });
             $('#novoModelo').modal('show');
         }
-        function InserirNovo(){
-            var id = 0;
-            var targetUrl = "../Backend/_modeloDocumento/store.php";
-            var callParameters = {'nome': $('input[name=nome]').val(), 'descricao': $('input[name=descricao]').val()};
-            $.ajax({ type: 'POST', url: targetUrl, data: callParameters, success: function(response) { id = response; }, async: false });
-        }
         function FecharDialogo(){
+            ListarItems();
             $('#novoModelo').modal('hide');
         }
     </script>
 </head>
 <body>
+    <div id="container"></div>
+    <br/>
     <div id="menu">
-        <button type="button" class="btn btn-primary" onclick="AddNew();" >Novo Modelo</button>
+        <button type="button" class="btn btn-primary" onclick="AbrirDialogo();" >Novo Modelo</button>
     </div>
     <br/>
-    <div id="container">
-    </div>
-    <div id="lista">
-    </div>
+    <div id="lista"></div>
 
     <script type="text/javascript" >
         $(document).ready(function() {
-            function ParseResponse(response){
-                var lista = document.getElementById("lista");
-
-                var itemList = JSON.parse(response);
-                for(var item in itemList) {
-                    DisplayItem(itemList[item]);
-                }
-            }
-
-            function DisplayItem(modeloDocumento){
-                var span = document.createElement('span');
-                span.innerText = modeloDocumento.nome;
-                lista.appendChild(span);
-                var editButton = document.createElement('img');
-                editButton.src = 'images/edit.png';
-                lista.appendChild(editButton);
-                var deleteButton = document.createElement('img');
-                deleteButton.src = 'images/dump.png';
-                lista.appendChild(deleteButton);
-                var lineBreak = document.createElement('br');
-                lista.appendChild(lineBreak);
-            }
-
-            var targetUrl = "../Backend/_modeloDocumento/retrieve.php";
-            var callParameters = {'reg':''}; // Parâmetro vazio, retorna todos os registros
-            $.ajax({ type: 'POST', url: targetUrl, data: callParameters, success: function(response) { ParseResponse(response); }, async: false });
+            ListarItems();
         });
     </script>
 </body>
