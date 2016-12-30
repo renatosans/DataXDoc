@@ -22,6 +22,9 @@ $modeloDocumento = new ModeloDocumentoDTO();
 if ( isset($_REQUEST["reg"]) && ($_REQUEST["reg"] != 0) ) {
     $id = $_REQUEST["reg"];
     $modeloDocumento = $modeloDocumentoDAO->RetrieveRecord($id);
+    if (is_null($modeloDocumento)){ // O registro não existe ou foi deletado
+        $modeloDocumento = new ModeloDocumentoDTO();
+    }
 }
 $modeloDocumento->nome       = $_REQUEST["nome"];
 $modeloDocumento->descricao  = $_REQUEST["descricao"];

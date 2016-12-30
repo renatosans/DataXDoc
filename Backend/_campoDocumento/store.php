@@ -22,6 +22,9 @@ $campoDocumento = new CampoDocumentoDTO();
 if ( isset($_REQUEST["reg"]) && ($_REQUEST["reg"] != 0) ) {
     $id = $_REQUEST["reg"];
     $campoDocumento = $campoDocumentoDAO->RetrieveRecord($id);
+    if (is_null($campoDocumento)){ // O registro não existe ou foi deletado
+        $campoDocumento = new CampoDocumentoDTO();
+    }
 }
 $campoDocumento->modeloDocumento  = $_REQUEST["modeloDocumento"];
 $campoDocumento->nome              = $_REQUEST["nome"];
