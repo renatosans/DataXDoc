@@ -8,6 +8,20 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        function LoadView(viewName, viewURL){
+            $('#container').hide();
+            // Busca a view no servidor através de uma requisição sincrona
+            $.ajax({ url: viewURL, context: this, async: false, success: function(response) {
+                    var container = document.getElementById("container");
+                    if ( $(viewName).length == 0) {  // Verifica se a view já foi carregada, evita duplicações
+                        container.innerHTML = response;
+                    }
+                }
+            });
+            $('#container').show();
+        }
+    </script>
 </head>
 <body>
 
@@ -19,6 +33,15 @@
     <li><a href="#">Documentos não indexados</a></li>
     <li class="active"><a href="modeloDocumento.html">Modelos de documento</a></li>        
 </ul>
+
+<div id="container"></div>
+<br/>
+
+<script type="text/javascript" >
+    $(document).ready(function() {
+        LoadView('#editarModelo', '../Frontend/views/editarModelo.html');
+    });
+</script>
 
 </body>
 </html>

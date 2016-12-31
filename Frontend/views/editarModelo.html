@@ -1,19 +1,22 @@
 <h4>MODELO DE DOCUMENTO</h4>
+<br/>
 
 <fieldset>
-    <label style="width: 99%;">Nome<br/>
+    <label style="width: 50%;">Nome<br/>
         <input type="text" name="nome" value="" style="width: 100%;height:25px;" />
     </label>
-    <label style="width: 99%;">Descricao<br/>
+    <label style="width: 50%;">Descricao<br/>
         <input type="text" name="descricao" value="" style="width: 100%;height:25px;" />
     </label>
     <br/>
 </fieldset>
+<br/>
 
 <button type="button" class="btn btn-primary" onclick="AbrirDialogo('newDocumentField');" >Novo Campo</button>
+<br/>
 
-<table id="campos">
-    <tr>
+<table class="table table-bordered" style="width: 70%;" id="campos">
+    <tr class="info">
         <td>Nome do campo</td><td>Formato</td><td>Ações</td>
     </tr>
 </table>
