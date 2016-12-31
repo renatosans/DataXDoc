@@ -54,6 +54,29 @@
         function ExcluirItem(id){
             // Exclui o registro da tabela
         }
+        function ParseResponse(response){
+            var lista = document.getElementById("lista");
+            lista.innerHTML = '<tr class="info"> <td>Nome do campo</td><td>Formato</td><td>Ações</td> </tr>'; // Limpa a lista antes de recarregar
+
+            var itemList = JSON.parse(response);
+            for(var item in itemList) {
+                DisplayItem(itemList[item]);
+            }
+        }
+        function DisplayItem(campoDocumento){
+            var row = document.createElement('tr');
+            var col1 = document.createElement('td');
+            col1.innerText = campoDocumento.nome;
+            var col2= document.createElement('td');
+            col2.innerText = campoDocumento.tipo;
+            var col3 = document.createElement('td');
+            var deleteClick = 'ExcluirItem(' + campoDocumento.id + '); ListarItems();';
+            col3.innerHTML = '&nbsp; <img src="images/edit.png" /> &nbsp; <img src="images/dump.png" onclick="' + deleteClick + '" />';
+            row.appendChild(col1);
+            row.appendChild(col2);
+            row.appendChild(col3);
+            lista.appendChild(row);
+        }
     </script>
 </head>
 <body>
@@ -74,6 +97,7 @@
 <script type="text/javascript" >
     $(document).ready(function() {
         LoadView('#editarModelo', '../Frontend/views/editarModelo.html');
+        ListarItems();
     });
 </script>
 
