@@ -22,7 +22,7 @@
             $('#container').show();
         }
 
-        function OpenDialog(dialogName, dialogURL){
+        function LoadDialog(dialogName, dialogURL){
             // Busca a view no servidor através de uma requisição sincrona
             $.ajax({ url: dialogURL, context: this, async: false, success: function(response) {
                     var modalDialog = document.getElementById("modalDialog");
@@ -31,13 +31,20 @@
                     }
                 }
             });
-            $(dialogName).modal('show');
         }
 
-        function NovoCampo(){
-            OpenDialog('#novoCampo', '../Frontend/views/novoCampo.html');
+        function AbrirDialogo(){
+            LoadDialog('#novoCampo', '../Frontend/views/novoCampo.html');
+            $('#novoCampo').modal('show');
         }
 
+        function FecharDialogo(){
+            $('#novoCampo').modal('hide');
+        }
+
+        function InserirNovo(){
+            // Insere um novo registro na tabela
+        }
     </script>
 </head>
 <body>
