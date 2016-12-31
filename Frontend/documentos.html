@@ -21,6 +21,23 @@
             });
             $('#container').show();
         }
+
+        function OpenDialog(dialogName, dialogURL){
+            // Busca a view no servidor através de uma requisição sincrona
+            $.ajax({ url: dialogURL, context: this, async: false, success: function(response) {
+                    var modalDialog = document.getElementById("modalDialog");
+                    if ( $(dialogName).length == 0) {  // Verifica se a view já foi carregada, evita duplicações
+                        modalDialog.innerHTML = response;
+                    }
+                }
+            });
+            $(dialogName).modal('show');
+        }
+
+        function NovoCampo(){
+            OpenDialog('#novoModelo', '../Frontend/views/novoModelo.html');
+        }
+
     </script>
 </head>
 <body>
@@ -34,6 +51,7 @@
     <li class="active"><a href="modeloDocumento.html">Modelos de documento</a></li>        
 </ul>
 
+<div id="modalDialog"></div>
 <div id="container"></div>
 <br/>
 
