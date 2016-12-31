@@ -1,0 +1,29 @@
+<div class="modal fade" role="dialog" id="novoCampo">
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Campo de Documento</h4>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" name="modeloDocumento" value="" />
+
+                <label style="width: 99%;">Nome<br/>
+                    <input type="text" name="nome" value="" style="width: 100%;height:25px;" />
+                </label>
+                <label style="width: 99%;">Formato (Tipo do campo)<br/>
+                    <select name="tipoCampo" style="width: 100%;height:25px;" />
+                        <option>Número</option>
+                        <option>Texto</option>
+                        <option>Data</option>
+                    </select>
+                </label>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="InserirNovo();FecharDialogo()">Incluir</button>
+                <button type="button" class="btn btn-default" onclick="FecharDialogo()">Descartar</button>
+            </div>
+        </div>
+      
+    </div>
+</div>
