@@ -21,7 +21,6 @@
             });
             $('#container').show();
         }
-
         function LoadDialog(dialogName, dialogURL){
             // Busca a view no servidor através de uma requisição sincrona
             $.ajax({ url: dialogURL, context: this, async: false, success: function(response) {
@@ -37,7 +36,6 @@
             LoadDialog('#novoCampo', '../Frontend/views/novoCampo.html');
             $('#novoCampo').modal('show');
         }
-
         function FecharDialogo(){
             $('#novoCampo').modal('hide');
         }
@@ -48,11 +46,14 @@
             var callParameters = {'modeloDocumento': $('input[name=modeloDocumento]').val(),'nome': $('input[name=nome]').val(), 'tipo': $('select[name=tipo]').val()};
             $.ajax({ type: 'POST', url: targetUrl, data: callParameters, success: function(response) { id = response; }, async: false });
         }
-
+        function ListarItems(){
+            var targetUrl = "../Backend/_campoDocumento/retrieve.php";
+            var callParameters = {'reg':''}; // Parâmetro vazio, retorna todos os registros
+            $.ajax({ type: 'POST', url: targetUrl, data: callParameters, success: function(response) { ParseResponse(response); }, async: false });
+        }
         function ExcluirItem(id){
             // Exclui o registro da tabela
         }
-
     </script>
 </head>
 <body>
