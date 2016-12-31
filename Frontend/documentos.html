@@ -43,8 +43,16 @@
         }
 
         function InserirNovo(){
-            // Insere um novo registro na tabela
+            var id = 0;
+            var targetUrl = "../Backend/_campoDocumento/store.php";
+            var callParameters = {'modeloDocumento': $('input[name=modeloDocumento]').val(),'nome': $('input[name=nome]').val(), 'tipo': $('select[name=tipo]').val()};
+            $.ajax({ type: 'POST', url: targetUrl, data: callParameters, success: function(response) { id = response; }, async: false });
         }
+
+        function ExcluirItem(id){
+            // Exclui o registro da tabela
+        }
+
     </script>
 </head>
 <body>
