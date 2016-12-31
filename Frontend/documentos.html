@@ -37,6 +37,7 @@
             $('#novoCampo').modal('show');
         }
         function FecharDialogo(){
+            ListarItems();
             $('#novoCampo').modal('hide');
         }
 
@@ -52,7 +53,9 @@
             $.ajax({ type: 'POST', url: targetUrl, data: callParameters, success: function(response) { ParseResponse(response); }, async: false });
         }
         function ExcluirItem(id){
-            // Exclui o registro da tabela
+            var targetUrl = "../Backend/_campoDocumento/delete.php";
+            var callParameters = {'reg[]':id};  // TODO: Exclusão multipla, selecionando vários items
+            $.ajax({ type: 'POST', url: targetUrl, data: callParameters, success: function(response) { alert(response); }, async: false });
         }
         function ParseResponse(response){
             var lista = document.getElementById("lista");
