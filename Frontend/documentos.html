@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script>
+        var fieldTypes = ["NONE","NÚMERO","TEXTO","DATA"];
+
         function LoadView(viewName, viewURL){
             $('#container').hide();
             // Busca a view no servidor através de uma requisição sincrona
@@ -71,7 +73,7 @@
             var col1 = document.createElement('td');
             col1.innerText = campoDocumento.nome;
             var col2= document.createElement('td');
-            col2.innerText = campoDocumento.tipo;
+            col2.innerText = fieldTypes[campoDocumento.tipo];
             var col3 = document.createElement('td');
             // var editClick = 'EditarItem(' + campoDocumento.id + ');';
             var deleteClick = 'ExcluirItem(' + campoDocumento.id + '); ListarItems(9);'; // retirar esse 9 hardcoded posteriormente

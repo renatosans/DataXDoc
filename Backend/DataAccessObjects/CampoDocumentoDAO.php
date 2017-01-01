@@ -96,6 +96,28 @@ class CampoDocumentoDAO{
         return $dtoArray;
     }
 
+    /* Obtem os tipos de campo cadastrados no banco
+    static function GetFieldTypes($mysqlConnection) {
+        $fieldTypes = array();
+
+        $query = "SELECT * FROM tipocampo;";
+        $recordSet = mysql_query($query, $mysqlConnection);
+        if (!$recordSet) {
+            print_r(mysql_error());
+            echo '<br/><br/>';
+        }
+        $recordCount = mysql_num_rows($recordSet);
+        if ($recordCount == 0) return null;
+
+        while( $record = mysql_fetch_array($recordSet) ) {
+            $fieldTypes['id']        = $record['id'];
+            $fieldTypes['descricao'] = $record['descricao'];
+        }
+        mysql_free_result($recordSet);
+
+        return $fieldTypes;
+    }*/
+
 }
 
 ?>
