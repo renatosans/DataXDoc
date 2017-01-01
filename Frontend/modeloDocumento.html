@@ -21,6 +21,25 @@
             });
             $('#container').show();
         }
+        function LoadDialog(dialogName, dialogURL){
+            // Busca a view no servidor através de uma requisição sincrona
+            $.ajax({ url: dialogURL, context: this, async: false, success: function(response) {
+                    var modalDialog = document.getElementById("modalDialog");
+                    if ( $(dialogName).length == 0) {  // Verifica se a view já foi carregada, evita duplicações
+                        modalDialog.innerHTML = response;
+                    }
+                }
+            });
+        }
+
+        function AbrirDialogo(){
+            LoadDialog('#novoModelo', '../Frontend/views/novoModelo.html');
+            $('#novoModelo').modal('show');
+        }
+        function FecharDialogo(){
+            ListarItems();
+            $('#novoModelo').modal('hide');
+        }
 
         function InserirNovo(){
             var id = 0;
@@ -61,23 +80,6 @@
             row.appendChild(col2);
             row.appendChild(col3);
             lista.appendChild(row);
-        }
-
-        function AbrirDialogo(){
-            // Busca a view para este dialogo
-            var targetUrl = '../Frontend/views/novoModelo.html';
-            $.ajax({ url: targetUrl, context: this, async: false, success: function(response) {
-                    var container = document.getElementById("container");
-                    if ( $( "#novoModelo" ).length == 0) {  // Verifica se o dialogo já existe na página, evita duplicações
-                        container.innerHTML = response;
-                    }
-                }
-            });
-            $('#novoModelo').modal('show');
-        }
-        function FecharDialogo(){
-            ListarItems();
-            $('#novoModelo').modal('hide');
         }
     </script>
 </head>
