@@ -9,6 +9,19 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script>
+        function LoadView(viewName, viewURL){
+            $('#container').hide();
+            // Busca a view no servidor através de uma requisição sincrona
+            $.ajax({ url: viewURL, context: this, async: false, success: function(response) {
+                    var container = document.getElementById("container");
+                    if ( $(viewName).length == 0) {  // Verifica se a view já foi carregada, evita duplicações
+                        container.innerHTML = response;
+                    }
+                }
+            });
+            $('#container').show();
+        }
+
         function InserirNovo(){
             var id = 0;
             var targetUrl = "../Backend/_modeloDocumento/store.php";
@@ -67,18 +80,18 @@
     </script>
 </head>
 <body>
+
+    <div id="navigationTabs"></div>
+    <div id="modalDialog"></div>
     <div id="container"></div>
     <br/>
-    <div id="menu">
-        <button type="button" class="btn btn-primary" onclick="AbrirDialogo();" >Novo Modelo</button>
-    </div>
-    <br/>
-    <div id="lista"></div>
 
     <script type="text/javascript" >
         $(document).ready(function() {
+            LoadView('#listarModelos', '../Frontend/views/listarModelos.html');
             ListarItems();
         });
     </script>
+
 </body>
 </html>
