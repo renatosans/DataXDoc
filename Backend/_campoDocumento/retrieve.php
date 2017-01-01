@@ -18,13 +18,13 @@ $campoDocumentoDAO = new CampoDocumentoDAO($dataConnector->mysqlConnection);
 $campoDocumentoDAO->showErrors = 1;
 
 /* recupera a lista de registros em formato JSON */
-$id = 0;
-if ( isset($_POST["reg"]) && ($_POST["reg"] != 0) ) {
-    $id = $_POST['reg'];
-    $campoDocumentoDTO = $campoDocumentoDAO->RetrieveRecord($id);
-    echo json_encode($campoDocumentoDTO);
+$modeloDocumento = 0;
+if ( isset($_POST["modeloDocumento"]) && ($_POST["modeloDocumento"] != 0) ) {
+    $modeloDocumento = $_POST['modeloDocumento'];
+    $lista = $campoDocumentoDAO->RetrieveRecordArray("modeloDocumento=".$modeloDocumento); // filtra os campos por modelo de documento
+    echo json_encode($lista);
 }
-if ($id == 0){ // nenhum registro especificado, retorna todos
+if ($modeloDocumento == 0){ // filtro não especificado, retorna todos os registros
     $lista = $campoDocumentoDAO->RetrieveRecordArray(null);
     echo json_encode($lista);
 }

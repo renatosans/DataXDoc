@@ -11,7 +11,7 @@
     $mysqlAuthentication = Array(
         "host"=>"localhost",
         "username"=>"root",
-        "password"=>"P@ssw0rd",
+        "password"=>"",
         "database"=>"dataxdoc"
     );
 
