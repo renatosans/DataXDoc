@@ -40,7 +40,7 @@
         }
         function ParseResponse(response){
             var lista = document.getElementById("lista");
-            lista.innerHTML = ""; // Limpa a lista antes de recarregar
+            lista.innerHTML = '<tr class="info"><td>Nome</td><td>Descrição</td><td>Ações</td></tr>'; // Limpa a lista antes de recarregar
 
             var itemList = JSON.parse(response);
             for(var item in itemList) {
@@ -48,19 +48,21 @@
             }
         }
         function DisplayItem(modeloDocumento){
-            var span = document.createElement('span');
-            span.innerText = modeloDocumento.nome;
-            lista.appendChild(span);
-            var editButton = document.createElement('img');
-            editButton.src = 'images/edit.png';
-            lista.appendChild(editButton);
-            var deleteButton = document.createElement('img');
-            deleteButton.src = 'images/dump.png';
-            deleteButton.onclick = function() { ExcluirItem(modeloDocumento.id); ListarItems(); };
-            lista.appendChild(deleteButton);
-            var lineBreak = document.createElement('br');
-            lista.appendChild(lineBreak);
+            var row = document.createElement('tr');
+            var col1 = document.createElement('td');
+            col1.innerText = modeloDocumento.nome;
+            var col2 = document.createElement('td');
+            col2.innerText = modeloDocumento.descricao;
+            var col3 = document.createElement('td');
+            // var editClick = 'EditarItem(' + modeloDocumento.id + ');';
+            var deleteClick = 'ExcluirItem(' + modeloDocumento.id + '); ListarItems();';
+            col3.innerHTML = '&nbsp; <img src="images/edit.png" /> &nbsp; <img src="images/dump.png" onclick="' + deleteClick + '" />';
+            row.appendChild(col1);
+            row.appendChild(col2);
+            row.appendChild(col3);
+            lista.appendChild(row);
         }
+
         function AbrirDialogo(){
             // Busca a view para este dialogo
             var targetUrl = '../Frontend/views/novoModelo.html';
