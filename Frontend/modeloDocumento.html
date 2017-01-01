@@ -8,6 +8,82 @@
     <script type="text/javascript" src="javascript/jquery-3.1.1.min.js" ></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        var fieldTypes = ["NONE","NÚMERO","TEXTO","DATA"];
+
+        function LoadView(viewName, viewURL){
+            $('#container').hide();
+            // Busca a view no servidor através de uma requisição sincrona
+            $.ajax({ url: viewURL, context: this, async: false, success: function(response) {
+                    var container = document.getElementById("container");
+                    if ( $(viewName).length == 0) {  // Verifica se a view já foi carregada, evita duplicações
+                        container.innerHTML = response;
+                    }
+                }
+            });
+            $('#container').show();
+        }
+        function LoadDialog(dialogName, dialogURL){
+            // Busca a view no servidor através de uma requisição sincrona
+            $.ajax({ url: dialogURL, context: this, async: false, success: function(response) {
+                    var modalDialog = document.getElementById("modalDialog");
+                    if ( $(dialogName).length == 0) {  // Verifica se a view já foi carregada, evita duplicações
+                        modalDialog.innerHTML = response;
+                    }
+                }
+            });
+        }
+
+        function AbrirDialogo(){
+            LoadDialog('#novoCampo', '../Frontend/views/novoCampo.html');
+            $('#novoCampo').modal('show');
+        }
+        function FecharDialogo(){
+            ListarItems(9); // retirar esse 9 hardcoded posteriormente
+            $('#novoCampo').modal('hide');
+        }
+
+        function InserirNovo(){
+            var id = 0;
+            var targetUrl = "../Backend/_campoDocumento/store.php";
+            var callParameters = {'modeloDocumento': $('input[name=modeloDocumento]').val(),'nome': $('input[name=nome]').val(), 'tipo': $('select[name=tipo]').val()};
+            $.ajax({ type: 'POST', url: targetUrl, data: callParameters, success: function(response) { id = response; }, async: false });
+        }
+        function ListarItems(modeloDocumento){
+            var targetUrl = "../Backend/_campoDocumento/retrieve.php";
+            var callParameters = {'modeloDocumento' : modeloDocumento}; // filtra os campos por modelo de documento
+            $.ajax({ type: 'POST', url: targetUrl, data: callParameters, success: function(response) { ParseResponse(response); }, async: false });
+        }
+        function ExcluirItem(id){
+            var targetUrl = "../Backend/_campoDocumento/delete.php";
+            var callParameters = {'reg[]':id};  // TODO: Exclusão multipla, selecionando vários items
+            $.ajax({ type: 'POST', url: targetUrl, data: callParameters, success: function(response) { alert(response); }, async: false });
+        }
+        function ParseResponse(response){
+            var lista = document.getElementById("lista");
+            lista.innerHTML = '<tr class="info"> <td>Nome do campo</td><td>Formato</td><td>Ações</td> </tr>'; // Limpa a lista antes de recarregar
+
+            var itemList = JSON.parse(response);
+            for(var item in itemList) {
+                DisplayItem(itemList[item]);
+            }
+        }
+        function DisplayItem(campoDocumento){
+            var row = document.createElement('tr');
+            var col1 = document.createElement('td');
+            col1.innerText = campoDocumento.nome;
+            var col2= document.createElement('td');
+            col2.innerText = fieldTypes[campoDocumento.tipo];
+            var col3 = document.createElement('td');
+            // var editClick = 'EditarItem(' + campoDocumento.id + ');';
+            var deleteClick = 'ExcluirItem(' + campoDocumento.id + '); ListarItems(9);'; // retirar esse 9 hardcoded posteriormente
+            col3.innerHTML = '&nbsp; <img src="images/edit.png" /> &nbsp; <img src="images/dump.png" onclick="' + deleteClick + '" />';
+            row.appendChild(col1);
+            row.appendChild(col2);
+            row.appendChild(col3);
+            lista.appendChild(row);
+        }
+    </script>
 </head>
 <body>
 
