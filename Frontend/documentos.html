@@ -10,15 +10,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script>
-        function AbrirDialogo(){
-            LoadDialog('#novoModelo', '../Frontend/views/novoModelo.html');
-            $('#novoModelo').modal('show');
-        }
-        function FecharDialogo(){
-            ListarItems();
-            $('#novoModelo').modal('hide');
-        }
-
         function InserirNovo(){
             var id = 0;
             var targetUrl = "../Backend/_modeloDocumento/store.php";
@@ -85,7 +76,8 @@
     <script type="text/javascript" >
         $(document).ready(function() {
             LoadView('#listarModelos', '../Frontend/views/listarModelos.html');
-            ListarItems();
+            // LoadScript('javascript/listarModelos.js', function() { ListarModelos(); } );
+            SetDialogParams('#novoModelo', '../Frontend/views/novoModelo.html');
         });
     </script>
 
