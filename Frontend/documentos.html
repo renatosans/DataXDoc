@@ -10,36 +10,12 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script>
-        function InserirNovo(){
-            var id = 0;
-            var targetUrl = "../Backend/_modeloDocumento/store.php";
-            var callParameters = {'nome': $('input[name=nome]').val(), 'descricao': $('input[name=descricao]').val()};
-            $.ajax({ type: 'POST', url: targetUrl, data: callParameters, success: function(response) { id = response; ListarItems(); }, async: false });
-        }
-        function ListarItems(){
-            var targetUrl = "../Backend/_modeloDocumento/retrieve.php";
-            var callParameters = {'reg':''}; // Parâmetro vazio, retorna todos os registros
-            $.ajax({ type: 'POST', url: targetUrl, data: callParameters, success: function(response) { ParseResponse(response); }, async: false });
-        }
-        function ExcluirItem(id){
-            var targetUrl = "../Backend/_modeloDocumento/delete.php";
-            var callParameters = {'reg[]':id};  // TODO: Exclusão multipla, selecionando vários items
-            $.ajax({ type: 'POST', url: targetUrl, data: callParameters, success: function(response) { alert(response); ListarItems(); }, async: false });
-        }
         function EditarItem(id){
             LoadView('#editarModelo', '../Frontend/views/editarModelo.html');
             LoadScript('javascript/editarModelo.js', function(){ SetRecordId(id); LoadRecord(); ListarCampos(); } );
             SetDialogParams('#novoCampo', '../Frontend/views/novoCampo.html');
         }
-        function ParseResponse(response){
-            var lista = document.getElementById("lista");
-            lista.innerHTML = '<tr class="info"><td>Nome</td><td>Descrição</td><td>Ações</td></tr>'; // Limpa a lista antes de recarregar
 
-            var itemList = JSON.parse(response);
-            for(var item in itemList) {
-                DisplayItem(itemList[item]);
-            }
-        }
         function DisplayItem(modeloDocumento){
             var row = document.createElement('tr');
             var col1 = document.createElement('td');
@@ -47,8 +23,8 @@
             var col2 = document.createElement('td');
             col2.innerText = modeloDocumento.descricao;
             var col3 = document.createElement('td');
-            var editClick = 'EditarItem(' + modeloDocumento.id + ');';
-            var deleteClick = 'ExcluirItem(' + modeloDocumento.id + '); ListarItems();';
+            var editClick = 'EditarModelo(' + modeloDocumento.id + ');';
+            var deleteClick = 'ExcluirModelo(' + modeloDocumento.id + ');';
             col3.innerHTML = '&nbsp; <img src="images/edit.png" onclick="' + editClick + '" /> &nbsp; <img src="images/dump.png" onclick="' + deleteClick + '" />';
             row.appendChild(col1);
             row.appendChild(col2);

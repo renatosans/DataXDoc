@@ -55,7 +55,7 @@ function DisplayRow(campoDocumento){
     var col3 = document.createElement('td');
     var editClick = 'EditarCampo(' + campoDocumento.id + ');';
     var deleteClick = 'ExcluirCampo(' + campoDocumento.id + ');';
-    col3.innerHTML = '&nbsp; <img src="images/edit.png" /> &nbsp; <img src="images/dump.png" onclick="' + deleteClick + '" />';
+    col3.innerHTML = '&nbsp; <img src="images/edit.png" onclick="' + editClick + '" /> &nbsp; <img src="images/dump.png" onclick="' + deleteClick + '" />';
     row.appendChild(col1);
     row.appendChild(col2);
     row.appendChild(col3);

@@ -1,4 +1,17 @@
 
+function InserirModelo(){
+    var id = 0;
+    var targetUrl = "../Backend/_modeloDocumento/store.php";
+    var callParameters = {'nome': $('input[name=nome]').val(), 'descricao': $('input[name=descricao]').val()};
+    $.ajax({ type: 'POST', url: targetUrl, data: callParameters, success: function(response) { id = response; ListarModelos(); }, async: false });
+}
+
+function ExcluirModelo(id){
+    var targetUrl = "../Backend/_modeloDocumento/delete.php";
+    var callParameters = {'reg[]': id};  // TODO: Exclusão multipla, selecionando vários items
+    $.ajax({ type: 'POST', url: targetUrl, data: callParameters, success: function(response) { alert(response); ListarModelos(); }, async: false });
+}
+
 function ListarModelos(){
     var targetUrl = "../Backend/_modeloDocumento/retrieve.php";
     var callParameters = {'reg':''}; // Parâmetro vazio, retorna todos os registros
