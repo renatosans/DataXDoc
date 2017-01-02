@@ -21,6 +21,12 @@
             });
             $('#container').show();
         }
+        function LoadScript(scriptURL, afterLoad){
+            var script = document.createElement('script');
+            script.src = scriptURL;
+            script.onload = afterLoad;
+            document.body.appendChild(script);
+        }
         function LoadDialog(dialogName, dialogURL){
             // Busca a view no servidor através de uma requisição sincrona
             $.ajax({ url: dialogURL, context: this, async: false, success: function(response) {
@@ -59,10 +65,7 @@
         }
         function EditarItem(id){
             LoadView('#editarModelo', '../Frontend/views/editarModelo.html');
-            $.getScript('javascript/editarModelo.js').done(function( script, textStatus ) {
-                SetRecordId(id);
-                ListarCampos();
-            });
+            LoadScript('javascript/editarModelo.js', function(){ SetRecordId(id); LoadRecord(); ListarCampos(); } );
         }
         function ParseResponse(response){
             var lista = document.getElementById("lista");
