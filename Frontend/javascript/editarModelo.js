@@ -20,13 +20,13 @@ function InserirCampo(){
     var id = 0;
     var targetUrl = "../Backend/_campoDocumento/store.php";
     var callParameters = {'modeloDocumento': recordId,'nome': $('input[name=nome]').val(), 'tipo': $('select[name=tipo]').val()};
-    $.ajax({ type: 'POST', url: targetUrl, data: callParameters, success: function(response) { id = response; }, async: false });
+    $.ajax({ type: 'POST', url: targetUrl, data: callParameters, success: function(response) { id = response; ListarCampos(recordId); }, async: false });
 }
 
 function ExcluirCampo(id){
     var targetUrl = "../Backend/_campoDocumento/delete.php";
     var callParameters = {'reg[]': id};  // TODO: Exclusão multipla, selecionando vários items
-    $.ajax({ type: 'POST', url: targetUrl, data: callParameters, success: function(response) { alert(response); }, async: false });
+    $.ajax({ type: 'POST', url: targetUrl, data: callParameters, success: function(response) { alert(response); ListarCampos(recordId); }, async: false });
 }
 
 function ListarCampos(){
@@ -54,7 +54,7 @@ function DisplayRow(campoDocumento){
     col2.innerText = fieldTypes[campoDocumento.tipo];
     var col3 = document.createElement('td');
     var editClick = 'EditarCampo(' + campoDocumento.id + ');';
-    var deleteClick = 'ExcluirCampo(' + campoDocumento.id + '); ListarCampos(' + recordId + ');';
+    var deleteClick = 'ExcluirCampo(' + campoDocumento.id + ');';
     col3.innerHTML = '&nbsp; <img src="images/edit.png" /> &nbsp; <img src="images/dump.png" onclick="' + deleteClick + '" />';
     row.appendChild(col1);
     row.appendChild(col2);

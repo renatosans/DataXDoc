@@ -40,6 +40,5 @@ function OpenDialog(){
 }
 
 function CloseDialog(){
-    // ListarItems(9);
     $(dialogName).modal('hide');
 }
