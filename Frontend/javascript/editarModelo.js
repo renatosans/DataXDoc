@@ -23,6 +23,12 @@ function InserirCampo(){
     $.ajax({ type: 'POST', url: targetUrl, data: callParameters, success: function(response) { id = response; }, async: false });
 }
 
+function ExcluirCampo(id){
+    var targetUrl = "../Backend/_campoDocumento/delete.php";
+    var callParameters = {'reg[]': id};  // TODO: Exclusão multipla, selecionando vários items
+    $.ajax({ type: 'POST', url: targetUrl, data: callParameters, success: function(response) { alert(response); }, async: false });
+}
+
 function ListarCampos(){
     var targetUrl = "../Backend/_campoDocumento/retrieve.php";
     var callParameters = {'modeloDocumento' : recordId}; // filtra os campos por modelo de documento
@@ -32,7 +38,7 @@ function ListarCampos(){
 
         var itemList = JSON.parse(response);
         for(var item in itemList) {
-            ListarLinha(itemList[item]);
+            DisplayRow(itemList[item]);
         }
     }
     });
@@ -40,15 +46,15 @@ function ListarCampos(){
 
 var fieldTypes = ["NONE","NÚMERO","TEXTO","DATA"];
 
-function ListarLinha(campoDocumento){
+function DisplayRow(campoDocumento){
     var row = document.createElement('tr');
     var col1 = document.createElement('td');
     col1.innerText = campoDocumento.nome;
     var col2= document.createElement('td');
     col2.innerText = fieldTypes[campoDocumento.tipo];
     var col3 = document.createElement('td');
-    // var editClick = 'EditarItem(' + campoDocumento.id + ');';
-    var deleteClick = 'ExcluirItem(' + campoDocumento.id + '); ListarItems(' + recordId + ');';
+    var editClick = 'EditarCampo(' + campoDocumento.id + ');';
+    var deleteClick = 'ExcluirCampo(' + campoDocumento.id + '); ListarCampos(' + recordId + ');';
     col3.innerHTML = '&nbsp; <img src="images/edit.png" /> &nbsp; <img src="images/dump.png" onclick="' + deleteClick + '" />';
     row.appendChild(col1);
     row.appendChild(col2);
