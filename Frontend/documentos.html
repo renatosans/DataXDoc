@@ -61,6 +61,7 @@
             LoadView('#editarModelo', '../Frontend/views/editarModelo.html');
             $.getScript('javascript/editarModelo.js').done(function( script, textStatus ) {
                 SetRecordId(id);
+                ListarCampos();
             });
         }
         function ParseResponse(response){
