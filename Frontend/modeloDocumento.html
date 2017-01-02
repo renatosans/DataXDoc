@@ -11,29 +11,6 @@
     <script>
         var fieldTypes = ["NONE","NÚMERO","TEXTO","DATA"];
 
-        function LoadView(viewName, viewURL){
-            $('#container').hide();
-            // Busca a view no servidor através de uma requisição sincrona
-            $.ajax({ url: viewURL, context: this, async: false, success: function(response) {
-                    var container = document.getElementById("container");
-                    if ( $(viewName).length == 0) {  // Verifica se a view já foi carregada, evita duplicações
-                        container.innerHTML = response;
-                    }
-                }
-            });
-            $('#container').show();
-        }
-        function LoadDialog(dialogName, dialogURL){
-            // Busca a view no servidor através de uma requisição sincrona
-            $.ajax({ url: dialogURL, context: this, async: false, success: function(response) {
-                    var modalDialog = document.getElementById("modalDialog");
-                    if ( $(dialogName).length == 0) {  // Verifica se a view já foi carregada, evita duplicações
-                        modalDialog.innerHTML = response;
-                    }
-                }
-            });
-        }
-
         function AbrirDialogo(){
             LoadDialog('#novoCampo', '../Frontend/views/novoCampo.html');
             $('#novoCampo').modal('show');
