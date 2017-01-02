@@ -36,7 +36,9 @@ function ListarCampos(){
     });
 }
 
+
 var fieldTypes = ["NONE","NÚMERO","TEXTO","DATA"];
+
 
 function ListarLinha(campoDocumento){
     var row = document.createElement('tr');
