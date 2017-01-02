@@ -21,6 +21,13 @@ function NovoCampo(){
     $('#novoCampo').modal('show');
 }
 
+function InserirCampo(){
+    var id = 0;
+    var targetUrl = "../Backend/_campoDocumento/store.php";
+    var callParameters = {'modeloDocumento': $('input[name=modeloDocumento]').val(),'nome': $('input[name=nome]').val(), 'tipo': $('select[name=tipo]').val()};
+    $.ajax({ type: 'POST', url: targetUrl, data: callParameters, success: function(response) { id = response; }, async: false });
+}
+
 function ListarCampos(){
     var targetUrl = "../Backend/_campoDocumento/retrieve.php";
     var callParameters = {'modeloDocumento' : recordId}; // filtra os campos por modelo de documento
