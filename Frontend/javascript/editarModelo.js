@@ -46,7 +46,7 @@ function ListarLinha(campoDocumento){
     col2.innerText = fieldTypes[campoDocumento.tipo];
     var col3 = document.createElement('td');
     // var editClick = 'EditarItem(' + campoDocumento.id + ');';
-    var deleteClick = 'ExcluirItem(' + campoDocumento.id + '); ListarItems(9);'; // retirar esse 9 hardcoded posteriormente
+    var deleteClick = 'ExcluirItem(' + campoDocumento.id + '); ListarItems(' + recordId + ');';
     col3.innerHTML = '&nbsp; <img src="images/edit.png" /> &nbsp; <img src="images/dump.png" onclick="' + deleteClick + '" />';
     row.appendChild(col1);
     row.appendChild(col2);
