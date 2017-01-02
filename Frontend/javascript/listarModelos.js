@@ -1,4 +1,10 @@
 
+function EditarModelo(id){
+    LoadView('#editarModelo', '../Frontend/views/editarModelo.html');
+    LoadScript('javascript/editarModelo.js', function(){ SetRecordId(id); LoadRecord(); ListarCampos(); } );
+    SetDialogParams('#novoCampo', '../Frontend/views/novoCampo.html');
+}
+
 function InserirModelo(){
     var id = 0;
     var targetUrl = "../Backend/_modeloDocumento/store.php";
@@ -25,4 +31,20 @@ function ListarModelos(){
         }
     }
     });
+}
+
+function DisplayItem(modeloDocumento){
+    var row = document.createElement('tr');
+    var col1 = document.createElement('td');
+    col1.innerText = modeloDocumento.nome;
+    var col2 = document.createElement('td');
+    col2.innerText = modeloDocumento.descricao;
+    var col3 = document.createElement('td');
+    var editClick = 'EditarModelo(' + modeloDocumento.id + ');';
+    var deleteClick = 'ExcluirModelo(' + modeloDocumento.id + ');';
+    col3.innerHTML = '&nbsp; <img src="images/edit.png" onclick="' + editClick + '" /> &nbsp; <img src="images/dump.png" onclick="' + deleteClick + '" />';
+    row.appendChild(col1);
+    row.appendChild(col2);
+    row.appendChild(col3);
+    lista.appendChild(row);
 }
