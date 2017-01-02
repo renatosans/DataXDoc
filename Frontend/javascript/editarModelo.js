@@ -16,15 +16,10 @@ function LoadRecord(){
     });
 }
 
-function NovoCampo(){
-    LoadDialog('#novoCampo', '../Frontend/views/novoCampo.html');
-    $('#novoCampo').modal('show');
-}
-
 function InserirCampo(){
     var id = 0;
     var targetUrl = "../Backend/_campoDocumento/store.php";
-    var callParameters = {'modeloDocumento': $('input[name=modeloDocumento]').val(),'nome': $('input[name=nome]').val(), 'tipo': $('select[name=tipo]').val()};
+    var callParameters = {'modeloDocumento': recordId,'nome': $('input[name=nome]').val(), 'tipo': $('select[name=tipo]').val()};
     $.ajax({ type: 'POST', url: targetUrl, data: callParameters, success: function(response) { id = response; }, async: false });
 }
 
@@ -43,9 +38,7 @@ function ListarCampos(){
     });
 }
 
-
 var fieldTypes = ["NONE","NÚMERO","TEXTO","DATA"];
-
 
 function ListarLinha(campoDocumento){
     var row = document.createElement('tr');

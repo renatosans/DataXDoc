@@ -38,6 +38,7 @@
         function EditarItem(id){
             LoadView('#editarModelo', '../Frontend/views/editarModelo.html');
             LoadScript('javascript/editarModelo.js', function(){ SetRecordId(id); LoadRecord(); ListarCampos(); } );
+            SetDialogParams('#novoCampo', '../Frontend/views/novoCampo.html');
         }
         function ParseResponse(response){
             var lista = document.getElementById("lista");

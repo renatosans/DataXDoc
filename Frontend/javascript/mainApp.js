@@ -19,7 +19,15 @@ function LoadScript(scriptURL, afterLoad){
     document.body.appendChild(script);
 }
 
-function LoadDialog(dialogName, dialogURL){
+var dialogName = null;
+var dialogURL = null;
+
+function SetDialogParams(name, URL){
+    dialogName = name;
+    dialogURL = URL;
+}
+
+function OpenDialog(){
     // Busca a view no servidor através de uma requisição sincrona
     $.ajax({ url: dialogURL, context: this, async: false, success: function(response) {
             var modalDialog = document.getElementById("modalDialog");
@@ -28,4 +36,10 @@ function LoadDialog(dialogName, dialogURL){
             }
         }
     });
+    $(dialogName).modal('show');
+}
+
+function CloseDialog(){
+    // ListarItems(9);
+    $(dialogName).modal('hide');
 }

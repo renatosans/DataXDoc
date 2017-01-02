@@ -6,8 +6,6 @@
                 <h4 class="modal-title">Campo de Documento</h4>
             </div>
             <div class="modal-body">
-                <input type="hidden" name="modeloDocumento" value="9" /> <!-- retirar esse 9 hardcoded posteriormente -->
-
                 <label style="width: 99%;">Nome<br/>
                     <input type="text" name="nome" value="" style="width: 100%;height:25px;" />
                 </label>
@@ -20,8 +18,8 @@
                 </label>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="InserirCampo();FecharDialogo()">Incluir</button>
-                <button type="button" class="btn btn-default" onclick="FecharDialogo()">Descartar</button>
+                <button type="button" class="btn btn-primary" onclick="InserirCampo();CloseDialog();">Incluir</button>
+                <button type="button" class="btn btn-default" onclick="CloseDialog();">Descartar</button>
             </div>
         </div>
       
