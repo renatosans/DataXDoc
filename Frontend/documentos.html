@@ -57,6 +57,12 @@
             var callParameters = {'reg[]':id};  // TODO: Exclusão multipla, selecionando vários items
             $.ajax({ type: 'POST', url: targetUrl, data: callParameters, success: function(response) { alert(response); }, async: false });
         }
+        function EditarItem(id){
+            LoadView('#editarModelo', '../Frontend/views/editarModelo.html');
+            $.getScript('javascript/editarModelo.js').done(function( script, textStatus ) {
+                SetRecordId(id);
+            });
+        }
         function ParseResponse(response){
             var lista = document.getElementById("lista");
             lista.innerHTML = '<tr class="info"><td>Nome</td><td>Descrição</td><td>Ações</td></tr>'; // Limpa a lista antes de recarregar
@@ -73,9 +79,9 @@
             var col2 = document.createElement('td');
             col2.innerText = modeloDocumento.descricao;
             var col3 = document.createElement('td');
-            // var editClick = 'EditarItem(' + modeloDocumento.id + ');';
+            var editClick = 'EditarItem(' + modeloDocumento.id + ');';
             var deleteClick = 'ExcluirItem(' + modeloDocumento.id + '); ListarItems();';
-            col3.innerHTML = '&nbsp; <img src="images/edit.png" /> &nbsp; <img src="images/dump.png" onclick="' + deleteClick + '" />';
+            col3.innerHTML = '&nbsp; <img src="images/edit.png" onclick="' + editClick + '" /> &nbsp; <img src="images/dump.png" onclick="' + deleteClick + '" />';
             row.appendChild(col1);
             row.appendChild(col2);
             row.appendChild(col3);
