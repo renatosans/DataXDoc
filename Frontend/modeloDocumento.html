@@ -9,27 +9,5 @@
     <script type="text/javascript" src="javascript/jquery-3.1.1.min.js" ></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script>
-        function InserirNovo(){
-            var id = 0;
-            var targetUrl = "../Backend/_campoDocumento/store.php";
-            var callParameters = {'modeloDocumento': $('input[name=modeloDocumento]').val(),'nome': $('input[name=nome]').val(), 'tipo': $('select[name=tipo]').val()};
-            $.ajax({ type: 'POST', url: targetUrl, data: callParameters, success: function(response) { id = response; }, async: false });
-        }
-        function ListarItems(modeloDocumento){
-            var targetUrl = "../Backend/_campoDocumento/retrieve.php";
-            var callParameters = {'modeloDocumento' : modeloDocumento}; // filtra os campos por modelo de documento
-            $.ajax({ type: 'POST', url: targetUrl, data: callParameters, success: function(response) { ParseResponse(response); }, async: false });
-        }
-        function ExcluirItem(id){
-            var targetUrl = "../Backend/_campoDocumento/delete.php";
-            var callParameters = {'reg[]':id};  // TODO: Exclusão multipla, selecionando vários items
-            $.ajax({ type: 'POST', url: targetUrl, data: callParameters, success: function(response) { alert(response); }, async: false });
-        }
-    </script>
 </head>
-<body>
-    <!-- duplicado -->
-</body>
 
-</html>

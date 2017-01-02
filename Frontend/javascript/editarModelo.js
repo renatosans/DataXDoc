@@ -20,13 +20,13 @@ function InserirCampo(){
     var id = 0;
     var targetUrl = "../Backend/_campoDocumento/store.php";
     var callParameters = {'modeloDocumento': recordId,'nome': $('input[name=nome]').val(), 'tipo': $('select[name=tipo]').val()};
-    $.ajax({ type: 'POST', url: targetUrl, data: callParameters, success: function(response) { id = response; ListarCampos(recordId); }, async: false });
+    $.ajax({ type: 'POST', url: targetUrl, data: callParameters, success: function(response) { id = response; ListarCampos(); }, async: false });
 }
 
 function ExcluirCampo(id){
     var targetUrl = "../Backend/_campoDocumento/delete.php";
     var callParameters = {'reg[]': id};  // TODO: Exclusão multipla, selecionando vários items
-    $.ajax({ type: 'POST', url: targetUrl, data: callParameters, success: function(response) { alert(response); ListarCampos(recordId); }, async: false });
+    $.ajax({ type: 'POST', url: targetUrl, data: callParameters, success: function(response) { alert(response); ListarCampos(); }, async: false });
 }
 
 function ListarCampos(){
