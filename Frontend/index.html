@@ -11,19 +11,27 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body> 
-    <div id="container">
-        <a href="#">Usuários</a>
-        <a href="documentos.html">Documentos</a>
-        <a href="testeBackend.html">Teste de Backend</a>
-    </div>
+    <a href="testeBackend.html">Teste de Backend</a>
+    <br/>
+    <br/>
 
-    <script>
-     document.body.onload = function(){
-        var header = document.createElement('h1');
-        header.innerText = "DataXDoc";
-        var container = document.getElementById("container");
-        container.appendChild(header);
-     }
+    <ul class="nav nav-tabs" role="tablist">
+        <li><a href="#">Documentos indexados</a></li>
+        <li><a href="#">Documentos não indexados</a></li>
+        <li class="active"><a href="#">Modelos de documento</a></li>        
+    </ul>
+
+    <div id="navigationTabs"></div>
+    <div id="modalDialog"></div>
+    <div id="container"></div>
+    <br/>
+
+    <script type="text/javascript" >
+        $(document).ready(function() {
+            LoadView('#listarModelos', '../Frontend/views/listarModelos.html');
+            LoadScript('javascript/listarModelos.js', function() { ListarModelos(); } );
+            SetDialogParams('#novoModelo', '../Frontend/views/novoModelo.html');
+        });
     </script>
 
 </body>
