@@ -21,6 +21,16 @@
         <li class="active"><a href="#">Modelos de documento</a></li>        
     </ul>
 
+    <div id="slidePanel">
+        <a href="#" id="slidePanelTab"><img src="images/workspace.png" /></a>
+        <h3>Documentos</h3>
+        <div class="contentPanel">
+            <input type="checkbox" >Arquivo 1</input><br/>
+            <input type="checkbox" >Arquivo 2</input><br/>
+            <input type="checkbox" >Arquivo 3</input><br/>
+        </div>
+    </div>
+
     <div id="navigationTabs"></div>
     <div id="modalDialog"></div>
     <div id="container"></div>
@@ -31,6 +41,7 @@
             LoadView('#listarModelos', '../Frontend/views/listarModelos.html');
             LoadScript('javascript/listarModelos.js', function() { ListarModelos(); } );
             SetDialogParams('#novoModelo', '../Frontend/views/novoModelo.html');
+            SetEventHandlers();
         });
     </script>
 
