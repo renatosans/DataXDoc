@@ -1,6 +1,8 @@
 h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 10px;
     font-family: Verdana, Arial, sans-serif;
-    font-weight: normal;
+    font-weight: lighter;
 }
 textarea {
 	background-color: lightyellow;
@@ -41,4 +43,11 @@ li {
     border: 1px solid #ccc;
     background: #fff;
     padding: 10px;
+}
+.actionList{
+    float: right;
+    padding: 10px;
+}
+.icon{
+    padding: 5px;
 }
