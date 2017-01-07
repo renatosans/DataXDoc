@@ -40,10 +40,10 @@ li {
     margin-top: -10px;
 }
 header {
-    height: 20%;
+    height: 15%;
 }
 section {
-    height: 80%;
+    height: 85%;
 }
 .contentPanel {
     border: 1px solid #ccc;
@@ -53,6 +53,7 @@ section {
 }
 .actionList {
     float: right;
+    margin: 0;
     padding: 10px;
 }
 .icon {
