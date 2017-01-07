@@ -39,15 +39,22 @@ li {
     margin-left: -50px;
     margin-top: -10px;
 }
+header {
+    height: 20%;
+}
+section {
+    height: 80%;
+}
 .contentPanel {
     border: 1px solid #ccc;
     background: #fff;
     padding: 10px;
+    height: 100%;
 }
-.actionList{
+.actionList {
     float: right;
     padding: 10px;
 }
-.icon{
+.icon {
     padding: 5px;
 }
