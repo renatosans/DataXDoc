@@ -59,3 +59,6 @@ section {
 .icon {
     padding: 5px;
 }
+.icon img:last-child{display:none}
+.icon:hover img:first-child{display:none}
+.icon:hover img:last-child{display:inline-block}
