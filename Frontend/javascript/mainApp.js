@@ -1,16 +1,4 @@
 
-function SetEventHandlers(){
-    $('#slidePanelTab').on('click', function() {
-        var panel = $('#slidePanel');
-        if (panel.hasClass("visible")) {
-            panel.removeClass('visible').animate({'margin-right':'-400px'});
-        } else {
-            panel.addClass('visible').animate({'margin-right':'0px'});
-        }
-        return false;
-    });
-}
-
 function LoadView(viewName, viewURL){
     $('#container').hide();
     // Busca a view no servidor através de uma requisição sincrona
