@@ -12,7 +12,7 @@ function SetEventHandlers(){
     });
 
     $('#fileUpload').on('click', function() {
-        alert('File Upload...');
+        FileUpload();
     });
 
     $('#dbStore').on('click', function() {
@@ -20,7 +20,7 @@ function SetEventHandlers(){
     });
 
     $('#dump').on('click', function() {
-        alert('Descartar upload...');
+        DeleteFiles($('#uploadedFiles input[type=checkbox]:checked'));
     });
 }
 
@@ -33,9 +33,23 @@ function UpdateContents(){
 
         var fileList = JSON.parse(response);
         for(var item in fileList) {
-            $('#uploadedFiles').append('<input type="checkbox" >' + fileList[item] + '</input>');
+            $('#uploadedFiles').append('<input type="checkbox" name=' + fileList[item] + '>' + fileList[item] + '</input>');
             $('#uploadedFiles').append('<br/>');
         }
     }
     });
+}
+
+function FileUpload(){
+    // Faz o upload de um documento para o servidor
+}
+
+function DeleteFiles(filesChecked){
+    var fileArray = new Array();
+    filesChecked.each(function(index, element) {
+        fileArray.push(element.name);
+    });
+    var targetUrl = "../Backend/_uploadArquivo/removerArquivo.php";
+    var callParameters = { 'filesChecked[]': fileArray };
+    $.ajax({ type: 'POST', url: targetUrl, data: callParameters, success: function(response) { alert(response); UpdateContents(); }, async: false });
 }
