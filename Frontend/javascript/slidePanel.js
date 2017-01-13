@@ -41,7 +41,48 @@ function UpdateContents(){
 }
 
 function FileUpload(){
-    // Faz o upload de um documento para o servidor
+    $('#uploadForm input[name=file]').change(function(event) {
+        event.stopImmediatePropagation();  // Evita que o evento seja disparado várias vezes
+
+        var status = '';
+        var files = event.target.files;
+
+        var xhr = new XMLHttpRequest();
+
+        xhr.open("POST", '../Backend/_uploadArquivo/upload.php');
+
+        var formData = new FormData($('#uploadForm'));
+        xhr.send(formData);
+
+        xhr.addEventListener('readystatechange', function() {
+        if (xhr.readyState === 4 && xhr.status == 200) {
+            var json = JSON.parse(xhr.responseText);
+
+            if (!json.error && json.status === 'ok') {
+                status += '<br/> Enviado!!';
+                alert(status);
+            } else {
+                alert('Arquivo não enviado. Erro: ' + json.error);
+            }
+        } else {
+            status = xhr.statusText;
+        }
+        });
+
+        xhr.upload.addEventListener("progress", function(e) {
+        if (e.lengthComputable) {
+            var percentage = Math.round((e.loaded * 100) / e.total);
+            status = String(percentage) + '%';
+        }
+        }, false);
+
+        xhr.upload.addEventListener("load", function(e){
+            status = '100%';
+        }, false);
+
+        $(this).val(''); // limpa a seleção para o evento ser disparado novamente
+    });
+    $('#uploadForm input[name=file]').trigger('click');
 }
 
 function DeleteFiles(filesChecked){
