@@ -1,15 +1,39 @@
 <?php
 
-if (isset($_FILES['file']) && !empty($_FILES['file']['name'])) {
-  move_uploaded_file($_FILES['file']['tmp_name'], "_tempDir/" . $_FILES['file']['name']);
+    /*
+    if( !isset($_FILES['file']) ){
+        echo "Falha no envio";
+        exit;
+    }
 
-  $ret = array('status' => 'ok');
-} else {
-  $ret = array('error' => 'no_file');
-}
+    if( empty($_FILES['file']['name']) ){
+        echo "Nenhum arquivo selecionado";
+        exit;
+    }
+    */
 
-header('Content-Type: application/json');
-echo json_encode($ret);
-exit;
+    $filesMoved = 0;
+    foreach ($_FILES as $file){
+        if (!move_uploaded_file($file['tmp_name'], '../_tempDir/'.$file['name'])){
+            print_r(error_get_last());
+            exit;
+        }
+        $filesMoved++;
+    }
+    echo "Operação efetuada com sucesso. ".$filesMoved." arquivos movidos.";
+
+    /*
+    if (isset($_FILES['file']) && !empty($_FILES['file']['name'])) {
+      move_uploaded_file($_FILES['file']['tmp_name'], "_tempDir/" . $_FILES['file']['name']);
+
+      $ret = array('status' => 'ok');
+    } else {
+      $ret = array('error' => 'no_file');
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($ret);
+    exit;
+    */
 
 ?>

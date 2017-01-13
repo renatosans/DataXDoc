@@ -47,11 +47,26 @@ function FileUpload(){
         var status = '';
         var files = event.target.files;
 
+        var formData = new FormData();
+        var file = [];
+        $.each(files, function(key, val) {
+            file[key] = val;
+        });
+        formData.append('file', file);
+
+        var targetUrl = '../Backend/_uploadArquivo/upload.php';
+        $.ajax({ type: 'POST', url: targetUrl, data: formData, cache: false, contentType: false, processData: false, success: function(response) {
+            alert(response);
+        }
+        });
+
+        /*
         var xhr = new XMLHttpRequest();
 
         xhr.open("POST", '../Backend/_uploadArquivo/upload.php');
 
-        var formData = new FormData($('#uploadForm'));
+        var formData = new FormData();
+        formData.append('file', files);
         xhr.send(formData);
 
         xhr.addEventListener('readystatechange', function() {
@@ -79,6 +94,7 @@ function FileUpload(){
         xhr.upload.addEventListener("load", function(e){
             status = '100%';
         }, false);
+        */
 
         $(this).val(''); // limpa a seleção para o evento ser disparado novamente
     });
