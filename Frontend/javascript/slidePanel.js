@@ -55,16 +55,10 @@ function FileUpload(){
 
         xhr.addEventListener('readystatechange', function() {
             if (xhr.readyState === 4 && xhr.status == 200) {
-            var json = JSON.parse(xhr.responseText);
-
-            if (!json.error && json.status === 'ok') {
-                status += 'Upload concluido';
+                alert('Upload concluído com sucesso');
+                UpdateContents();
             } else {
-                status = 'Arquivo não enviado';
-            }
-            alert(status);
-            } else {
-            status = xhr.statusText;
+                status = xhr.statusText;
             }
         });
 
