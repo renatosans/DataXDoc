@@ -45,56 +45,39 @@ function FileUpload(){
         event.stopImmediatePropagation();  // Evita que o evento seja disparado várias vezes
 
         var status = '';
-        var files = event.target.files;
 
-        var formData = new FormData();
-        var file = [];
-        $.each(files, function(key, val) {
-            file[key] = val;
-        });
-        formData.append('file', file);
-
-        var targetUrl = '../Backend/_uploadArquivo/upload.php';
-        $.ajax({ type: 'POST', url: targetUrl, data: formData, cache: false, contentType: false, processData: false, success: function(response) {
-            alert(response);
-        }
-        });
-
-        /*
         var xhr = new XMLHttpRequest();
 
         xhr.open("POST", '../Backend/_uploadArquivo/upload.php');
 
-        var formData = new FormData();
-        formData.append('file', files);
+        var formData = new FormData(document.getElementById('uploadForm'));
         xhr.send(formData);
 
         xhr.addEventListener('readystatechange', function() {
-        if (xhr.readyState === 4 && xhr.status == 200) {
+            if (xhr.readyState === 4 && xhr.status == 200) {
             var json = JSON.parse(xhr.responseText);
 
             if (!json.error && json.status === 'ok') {
-                status += '<br/> Enviado!!';
-                alert(status);
+                status += 'Upload concluido';
             } else {
-                alert('Arquivo não enviado. Erro: ' + json.error);
+                status = 'Arquivo não enviado';
             }
-        } else {
+            alert(status);
+            } else {
             status = xhr.statusText;
-        }
+            }
         });
 
         xhr.upload.addEventListener("progress", function(e) {
-        if (e.lengthComputable) {
+            if (e.lengthComputable) {
             var percentage = Math.round((e.loaded * 100) / e.total);
             status = String(percentage) + '%';
-        }
+            }
         }, false);
 
         xhr.upload.addEventListener("load", function(e){
             status = '100%';
         }, false);
-        */
 
         $(this).val(''); // limpa a seleção para o evento ser disparado novamente
     });

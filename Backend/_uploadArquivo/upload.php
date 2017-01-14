@@ -1,17 +1,5 @@
 <?php
 
-    /*
-    if( !isset($_FILES['file']) ){
-        echo "Falha no envio";
-        exit;
-    }
-
-    if( empty($_FILES['file']['name']) ){
-        echo "Nenhum arquivo selecionado";
-        exit;
-    }
-    */
-
     $filesMoved = 0;
     foreach ($_FILES as $file){
         if (!move_uploaded_file($file['tmp_name'], '../_tempDir/'.$file['name'])){
