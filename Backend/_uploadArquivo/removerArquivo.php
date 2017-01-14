@@ -5,7 +5,7 @@
     }
 
     foreach($_POST['filesChecked'] as $key=>$value){
-        if( !unlink('../_tempDir/'.$value) ){
+        if( !unlink('../_tempDir/'.base64_decode($value) )){
             echo "Não foi possivel efetuar a operação...";
             exit;
         }

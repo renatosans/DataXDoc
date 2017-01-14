@@ -81,7 +81,7 @@ function FileUpload(){
 function DeleteFiles(filesChecked){
     var fileArray = new Array();
     filesChecked.each(function(index, element) {
-        fileArray.push(element.name);
+        fileArray.push(btoa(element.name));
     });
     var targetUrl = "../Backend/_uploadArquivo/removerArquivo.php";
     var callParameters = { 'filesChecked[]': fileArray };
